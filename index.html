@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قصص الأطفال المصورة - 20 قصة مع الحكم</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Amiri', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            direction: rtl;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: rainbow 3s ease-in-out infinite;
+        }
+        
+        @keyframes rainbow {
+            0%, 100% { background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1); }
+            33% { background: linear-gradient(45deg, #4ecdc4, #45b7d1, #96ceb4); }
+            66% { background: linear-gradient(45deg, #45b7d1, #96ceb4, #feca57); }
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+        
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .story-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .story-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+        
+        .story-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+        
+        .story-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .story-title {
+            flex: 1;
+            font-size: 1.4em;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .story-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .story-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .wisdom {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-align: center;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .story-number {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #ff6b6b;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+        
+        .character {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            animation: wiggle 3s ease-in-out infinite;
+        }
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
+        }
+        
+        .summary {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .summary h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .wisdom-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .wisdom-item {
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            padding: 15px;
+            border-radius: 15px;
+            color: #333;
+            font-weight: bold;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .wisdom-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-star {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.6);
+            animation: float 6s ease-in-out infinite;
+            font-size: 2em;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @media (max-width: 768px) {
+            .stories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .story-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-star" style="top: 10%; left: 10%; animation-delay: 0s;">⭐</div>
+        <div class="floating-star" style="top: 20%; left: 80%; animation-delay: 1s;">🌟</div>
+        <div class="floating-star" style="top: 60%; left: 5%; animation-delay: 2s;">✨</div>
+        <div class="floating-star" style="top: 80%; left: 90%; animation-delay: 3s;">⭐</div>
+    </div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>🌟 قصص الأطفال السحرية 🌟</h1>
+            <p>20 قصة مليئة بالحكمة والمرح للأطفال الأذكياء</p>
+        </div>
+        
+        <div class="stories-grid">
+            <!-- القصة الأولى -->
+            <div class="story-card" onclick="toggleStory(1)">
+                <div class="story-number">1</div>
+                <div class="story-header">
+                    <div class="story-icon" style="background: linear-gradient(45deg, #ff9a9e, #fad0c4);">🐰</div>
+                    <h3 class="story-title">الأرنب الصادق سامي</h3>
+                </div>
+                <div class="character" style="background: linear-gradient(45deg, #ff9a9e, #fad0c4);">🐰</div>
+                <div id="story-1" class="story-content">
+                    <p>كان يا مكان أرنب صغير اسمه سامي. يوم واحد كسر سامي إناء ماما الجميل بالغلط. خاف سامي وفكر يخبي الموضوع، بس قرر يقول الصدق لماما. ماما زعلت شوية بس فرحت لأن سامي قال الصدق، وساعدته ينظف الكسر.</p>
+                    <div class="wisdom">💎 الصدق دائماً أفضل من الكذب، حتى لو كان صعب</div>
+                </div>
+            </div>
+            
+            <!-- القصة الثانية -->
+            <div class="story-card" onclick="toggleStory(2)">
+                <div class="story-number">2</div>
+                <div class="story-header">
+                    <div class="story-icon" style="background: linear-gradient(45deg, #a8e6cf, #88d8c0);">🐜</div>
+                    <h3 class="story-title">النملة المجتهدة نور</h3>
+                </div>
+                <div class="character" style="background: linear-gradient(45deg, #a8e6cf, #88d8c0);">🐜</div>
+                <div id="story-2" class="story-content">
+                    <p>في الصيف، كانت النملة نور تشتغل كل يوم تجمع الطعام للشتاء. الجرادة لولو كانت تلعب وتغني طول الوقت وتضحك على نور. لما جاء الشتاء البارد، النملة نور كان عندها طعام كثير، بس الجرادة لولو كانت جوعانة. نور الطيبة شاركت طعامها مع لولو.</p>
+                    <div class="wisdom">💪 العمل والاجتهاد يحمونا في الأوقات الصعبة، والكرم يجعلنا سعداء</div>
+                </div>
+            </div>
+            
+            <!-- القصة الثالثة -->
+            <div class="story-card" onclick="toggleStory(3)">
+                <div class="story-number">3</div>
+                <div class="story-header">
+                    <div class="story-icon" style="background: linear-gradient(45deg, #ffd3a5, #fd9853);">🐘</div>
+                    <h3 class="story-title">الفيل الصغير والفأر</h3>
+                </div>
+                <div class="character" style="background: linear-gradient(45deg, #ffd3a5, #fd9853);">🐘</div>
+                <div id="story-3" class="story-content">
+                    <p>كان فيل صغير اسمه فهد يستهزئ بالحيوانات الصغيرة. يوم واحد وقع في حفرة عميقة ومقدر يطلع. فأر صغير سمع صراخه وجمع كل الفيران الصغيرة، وحفروا طريق للفيل يطلع منه. فهد شكر الفأر وتعلم إنه ما يستهزئ بالآخرين.</p>
+                    <div class="wisdom">🤝 لا تحكم على الناس من حجمهم، الصغير يقدر يساعد الكبير</div>
+                </div>
+            </div>
+            
+            <!-- القصة الرابعة -->
+            <div class="story-card" onclick="toggleStory(4)">
+                <div class="story-number">4</div>
+                <div class="story-header">
+                    <div class="story-icon" style="background: linear-gradient(45deg, #a8edea, #fed6e3);">🐦</div>
+                    <h3 class="story-title">الطائر الذي تعلم الطيران</h3>
+                </div>
+                <div class="character" style="background: linear-gradient(45deg, #a8edea, #fed6e3);">🐦</div>
+                <div id="story-4" class="story-content">
+                    <p>كان طائر صغير اسمه طارق خائف من الطيران. كل إخوانه تعلموا يطيرون بس هو بقى في العش. ماما طائر صبرت عليه وشجعته كل يوم. أخيراً طارق جرب وطار، واكتشف إنه يحب الطيران كثير!</p>
+                    <div class="wisdom">🦅 الخوف طبيعي، بس الشجاعة تساعدنا نتغلب عليه</div>
+                </div>
+            </div>
+            
+            <!-- القصة الخامسة -->
+            <div class="story-card" onclick="toggleStory(5)">
+                <div class="story-number">5</div>
+                <div class="story-header">
+                    <div class="story-icon" style="background: linear-gradient(45deg, #fbc2eb, #a6c1ee);">🐱</div>
+                    <h3 class="story-title">القطة الجشعة والسمكة</h3>
+                </div>
+                <div class="character" style="background: linear-gradient(45deg, #fbc2eb, #a6c1ee);">🐱</div>
+                <div id="story-5" class="story-content">
+                    <p>قطة اسمها قمر شافت سمكة في الماء. أرادت تاخذ السمكة بس وقعت في الماء! السمكة ساعدتها تطلع وقالت لها: "لو طلبتي مني بأدب، كان عطيتك جزء من طعامي." تعلمت قمر إنها تطلب بأدب بدل ما تاخذ بالقوة.</p>
+                    <div class="wisdom">🙏 الأدب والطلب الحلو أحسن من الأخذ بالقوة</div>
+                </div>
+            </div>
+            
+            <!-- القصص 6-10 -->
+            <div class="story-card" onclick="toggleStory(6)">
+                <div class="story-number">6</div>
+                <div class="story-header">
+                    <div class="story-icon" style="background: linear-gradient(45deg, #f093fb, #f5576c);">🦁</div>
+                    <h3 class="story-title">الأسد والفأرة الصغيرة</h3>
+                </div>
+                <div class="character" style="background: linear-gradient(45deg, #f093fb, #f5576c);">🦁</div>
+                <div id="story-6" class="story-content">
+                    <p>نام أسد تحت شجرة. فأرة صغيرة جرت على وجهه وصحته من النوم. الأسد غضب وأراد ياكلها، بس الفأرة استعطفته وسامحها. بعدين الأسد وقع في شبكة صياد، والفأرة الصغيرة قرضت الشبكة وخلصته.</p>
+                    <div class="wisdom">❤️ المعروف ما ينتسى، والرحمة ترجع علينا بالخير</div>
+                </div>
+            </div>
+            
+            <div class="story-card" onclick="toggleStory(7)">
+                <div class="story-number">7</div>
+                <div class="story-header">
+                    <div class="story-icon" style="background: linear-gradient(45deg, #4facfe, #00f2fe);">🦆</div>
+                    <h3 class="story-title">البطة التي لا تريد الاستحمام</h3>
+                </div>
+                <div class="character" style="background: linear-gradient(45deg, #4facfe, #00f2fe);">🦆</div>
+                <div id="story-7" class="story-content">
+                    <p>كانت بطة اسمها بيلا ما تحب الاستحمام. كل البط الثاني نظيف ولامع، بس بيلا متسخة. الحيوانات الثانية ابتعدت عنها. لما شافت نفسها في الماء، قررت تستحم وتصير نظيفة. كل الأصدقاء رجعوا لها.</p>
+                    <div class="wisdom">✨ النظافة مهمة للصحة وللصداقة</div>
+                </div>
+            </div>
+            
+            <div class="story-card" onclick="toggleStory(8)">
+                <div class="story-number">8</div>
+                <div class="story-header">
+                    <div class="story-icon" style="background: linear-gradient(45deg, #fa709a, #fee140);">🐓</div>
+                    <h3 class="story-title">الديك المتكبر</h3>
+                </div>
+                <div class="character" style="background: linear-gradient(45deg, #fa709a, #fee140);">🐓</div>
+                <div id="story-8" class="story-content">
+                    <p>ديك اسمه ديمو كان يفتخر بصوته الجميل وذيله الملون. استهزأ بالحيوانات الثانية وقال إنه أحسن منهم. يوم واحد جاء ثعلب، وكل الحيوانات هربت وتركوا ديمو لوحده. تعلم ديمو إنه يحتاج أصدقاء ولازم يكون متواضع.</p>
+                    <div class="wisdom">🤗 التكبر يخلي الناس تبتعد عنا، والتواضع يجلب الأصدقاء</div>
+                </div>
+            </div>
+            
+            <div class="story-card" onclick="toggleStory(9)">
+                <div class="story-number">9</div>
+                <div class="story-header">
+                    <div class="story-icon" style="background: linear-gradient(45deg, #96fbc4, #f9f586);">🐢</div>
+                    <h3 class="story-title">السلحفاة والأرنب</h3>
+                </div>
+                <div class="character" style="background: linear-gradient(45deg, #96fbc4, #f9f586);">🐢</div>
+                <div id="story-9" class="story-content">
+                    <p>تسابق الأرنب السريع مع السلحفاة البطيئة. الأرنب ركض بسرعة وتقدم كثير، بس قرر ينام لأنه متأكد راح يفوز. السلحفاة استمرت تمشي بهدوء وصبر، ووصلت قبل الأرنب النايم.</p>
+                    <div class="wisdom">⏰ الصبر والمثابرة أهم من السرعة بدون هدف</div>
+                </div>
+            </div>
+            
+            <div class="story-card" onclick="toggleStory(10)">
+                <div class="story-number">10</div>
+                <div class="story-header">
+                    <div class="story-icon" style="background: linear-gradient(45deg, #ff9a8b, #a8edea);">🧒</div>
+                    <h3 class="story-title">الولد الذي يكذب</h3>
+                </div>
+                <div class="character" style="background: linear-gradient(45deg, #ff9a8b, #a8edea);">🧒</div>
+                <div id="story-10" class="story-content">
+                    <p>ولد راعي غنم اسمه سالم كان يصرخ "الذئب جاي! الذئب جاي!" عشان الناس تجري تساعده، بس كان يضحك عليهم لأنه ما كان في ذئب. لما جاء الذئب حقيقي وصرخ سالم، ما حد صدقه وأكل الذئب الغنم.</p>
+                    <div class="wisdom">🚫 الكذب المتكرر يخلي الناس ما تصدقنا حتى لما نقول الصدق</div>
+                </div>
+            </div>
+            
+            <!-- قصص أخرى مختصرة للمساحة -->
+            <div class="story-card" onclick="showAllStories()">
+                <div class="story-number">+</div>
+                <div class="story-header">
+                    <div class="story-icon" style="background: linear-gradient(45deg, #667eea, #764ba2);">📚</div>
+                    <h3 class="story-title">باقي القصص العشر</h3>
+                </div>
+                <div class="character" style="background: linear-gradient(45deg, #667eea, #764ba2);">📚</div>
+                <div id="more-stories" class="story-content">
+                    <p><strong>11. الفراشة والنحلة:</strong> الجمال الخارجي يعدي، بس العمل المفيد يبقى</p>
+                    <p><strong>12. الغراب والحمامة:</strong> كل واحد جميل بطريقته</p>
+                    <p><strong>13. الكلب الوفي:</strong> الوفاء للأهل والأصدقاء مهم</p>
+                    <p><strong>14. البومة الحكيمة:</strong> التعاون أقوى من التنافس</p>
+                    <p><strong>15. السمكة الفضولية:</strong> كلام الأهل فيه حكمة</p>
+                    <p><strong>16. الشجرة السخية:</strong> العطاء يجلب السعادة</p>
+                    <p><strong>17. الفأر الخائف:</strong> الأصدقاء يساعدوننا</p>
+                    <p><strong>18. الأرنب السريع:</strong> التركيز مهم للتذكر</p>
+                    <p><strong>19. الدبة الأم:</strong> الرحمة تجلب البركة</p>
+                    <p><strong>20. النجمة الصغيرة:</strong> كل واحد له دور مهم</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="summary">
+            <h2>🎯 ملخص الحكم والدروس</h2>
+            <div class="wisdom-list">
+                <div class="wisdom-item">💎 الصدق أفضل من الكذب</div>
+                <div class="wisdom-item">💪 العمل والاجتهاد مهمان</div>
+                <div class="wisdom-item">🤝 لا تحكم على الآخرين بالمظهر</div>
+                <div class="wisdom-item">🦅 الشجاعة تغلب الخوف</div>
+                <div class="wisdom-item">🙏 الأدب أحسن من القوة</div>
+                <div class="wisdom-item">❤️ المعروف يرجع بالخير</div>
+                <div class="wisdom-item">✨ النظافة مهمة</div>
+                <div class="wisdom-item">🤗 التواضع يجلب الأصدقاء</div>
+                <div class="wisdom-item">⏰ الصبر والمثابرة مهمان</div>
+                <div class="wisdom-item">🚫 الكذب يفقد الثقة</div>
+                <div class="wisdom-item">🌟 العمل المفيد يدوم</div>
+                <div class="wisdom-item">🎨 كل واحد جميل بطريقته</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleStory(storyNumber) {
+            const storyContent = document.getElementById('story-' + storyNumber);
+            const allStories = document.querySelectorAll('.story-content');
+            
+            // إخفاء كل القصص
+            allStories.forEach(story => {
+                story.classList.remove('active');
+            });
+            
+            // إظهار القصة المحددة
+            if (storyContent) {
+                storyContent.classList.toggle('active');
+            }
+        }
+        
+        function showAllStories() {
+            const moreStories = document.getElementById('more-stories');
+            moreStories.classList.toggle('active');
+        }
+        
+        // إضافة تأثيرات صوتية عند النقر
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.story-card')) {
+                // يمكن إضافة أصوات هنا
+                console.log('تم فتح القصة!');
+            }
+        });
+        
+        // تأثيرات تفاعلية للنجوم
+        const stars = document.querySelectorAll('.floating-star');
+        stars.forEach(star => {
+            star.addEventListener('mouseover', function() {
+                this.style.transform = 'scale(1.5) rotate(180deg)';
+                this.style.transition = 'all 0.3s ease';
+            });
+            
+            star.addEventListener('mouseout', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+    </script>
+</body>
+</html>
